@@ -57,18 +57,38 @@ public class Main {
                 if(temperaturas[f][c] > tempMax){
                     tempMax=temperaturas[f][c];
                     ciudadMax = ciudades[f];
+
                 }
 
                 if(temperaturas[f][c] < tempMin){
                     tempMin=temperaturas[f][c];
-                    ciudadMax = ciudades[f];
+                    ciudadMin = ciudades[f];
+
                 }
 
             }
         }
 
 
+
         System.out.println("Ciudad: "+ciudadMax+" / Temperatura maxima: "+tempMax);
         System.out.println("Ciudad: "+ciudadMin+" / Temperatura minima: "+tempMin);
+
+        System.out.println("Matriz Temperaturas:");
+        for (int f = 0; f <= 9; f++){
+
+            if (temperaturas[f][0] >= 0){
+                System.out.println(" "+temperaturas[f][0] + "   " + temperaturas[f][1]);
+            }
+            else if (temperaturas[f][0] < -9) {
+                System.out.println(temperaturas[f][0] + "  " + temperaturas[f][1]);
+
+            }
+            else {
+                System.out.println(temperaturas[f][0] + "   " + temperaturas[f][1]);
+            }
+
+        }
+
     }
 }
