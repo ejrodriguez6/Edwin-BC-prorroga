@@ -1,0 +1,9 @@
+
+r	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(µùÈÿÿÿÿÿ8’úÅõ¼1
+r	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(µùÈÿÿÿÿÿ8³úÅõ¼1
+r	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(µùÈÿÿÿÿÿ8³úÅõ¼1
+z	java:S116"^Rename this field "numero_participante" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ê÷Ç‚8ôô˜õ¼1
+x	java:S116
+"\Rename this field "numero_emergencia" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(àŞÌ·8Áè™õ¼1
+u	java:S116"ZRename this field "grupo_sanquineo" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(îªD8¬Èšõ¼1
+b	java:S107"AConstructor has 8 parameters, which is greater than 7 authorized.(µùÈÿÿÿÿÿ8ÕúÅõ¼1

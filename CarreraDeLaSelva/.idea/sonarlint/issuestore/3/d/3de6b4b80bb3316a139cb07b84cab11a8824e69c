@@ -1,0 +1,11 @@
+
+m	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(›µğ¢8·×”ı¼1
+r	java:S117)"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(­ªÂòûÿÿÿÿ8·×”ı¼1
+r	java:S117-"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(€í‹Áşÿÿÿÿ8¸×”ı¼1
+y	java:S116"]Rename this field "numero_inscripcion" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¸š¤8Ø×”ı¼1
+x	java:S116"WRename this field "monto_abonar" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(è¥‰®ÿÿÿÿÿ8Ù×”ı¼1
+o	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(”ñ«ñıÿÿÿÿ8ñ×”ı¼1
+o	java:S100)"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(­ªÂòûÿÿÿÿ8ñ×”ı¼1
+Z
+java:S1172-"8Remove this unused method parameter "participante_edad".(€í‹Áşÿÿÿÿ8ó×”ı¼1
+L	java:S106."+Replace this use of System.out by a logger.(šò¨àÿÿÿÿÿ8ô×”ı¼1

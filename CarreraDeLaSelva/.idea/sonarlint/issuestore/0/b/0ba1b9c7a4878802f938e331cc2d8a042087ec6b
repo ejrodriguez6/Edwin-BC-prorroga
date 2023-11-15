@@ -1,0 +1,27 @@
+
+l
+java:S1192"ODefine a constant instead of duplicating this literal "Circuito chico" 3 times.(™ÜÐŠ8è¤€ý¼1
+l
+java:S1192"ODefine a constant instead of duplicating this literal "Circuito medio" 3 times.(ÑüÝ‘8è¤€ý¼1
+r	java:S117&"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ö½ÿ„úÿÿÿÿ8è¤€ý¼1
+Y
+java:S4973'"<Strings and Boxed types should be compared using "equals()".(»äáÇ8é¤€ý¼1
+^
+java:S4973)"<Strings and Boxed types should be compared using "equals()".(—’Ù‚ýÿÿÿÿ8é¤€ý¼1
+Y
+java:S4973+"<Strings and Boxed types should be compared using "equals()".(…æÊ‚8é¤€ý¼1
+Y
+java:S4973-"<Strings and Boxed types should be compared using "equals()".(Šû«´8é¤€ý¼1
+^
+java:S4973/"<Strings and Boxed types should be compared using "equals()".(‘×þÿÿÿÿÿ8é¤€ý¼1
+u
+java:S18544"XRemove this useless assignment to local variable "calculoMontoInscripcionParticipante1".(£ìõ8ô¤€ý¼1
+L	java:S106"+Replace this use of System.out by a logger.(‚ÞÏ¥ýÿÿÿÿ8õ¤€ý¼1
+L	java:S106"+Replace this use of System.out by a logger.(“—†®ûÿÿÿÿ8÷¤€ý¼1
+G	java:S106"+Replace this use of System.out by a logger.(•ÿïÊ8÷¤€ý¼1
+L	java:S106"+Replace this use of System.out by a logger.(øÏ›–ÿÿÿÿÿ8÷¤€ý¼1
+G	java:S106#"+Replace this use of System.out by a logger.(õ³­¤8÷¤€ý¼1
+G	java:S1062"+Replace this use of System.out by a logger.(šûÍó8ù¤€ý¼1
+f
+java:S14814"IRemove this unused "calculoMontoInscripcionParticipante1" local variable.(£ìõ8ù¤€ý¼1
+G	java:S1066"+Replace this use of System.out by a logger.(¶Ô8ù¤€ý¼1
