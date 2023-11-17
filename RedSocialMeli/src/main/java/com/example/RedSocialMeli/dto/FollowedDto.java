@@ -1,43 +1,36 @@
 package com.example.RedSocialMeli.dto;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-
 @Data
 @NoArgsConstructor
 //@AllArgsConstructor
-public class UserDto {
-
-//    private Long user_id;
-//    private String user_name;
- //   private UserTypeEnumDto userTypeEnumDto;
-
+public class FollowedDto {
     private int userId;
-    private String userName;
+    private int followedId;
 
-    public UserDto(int userId, String userName) {
+    public FollowedDto(int userId, int followedId) {
         this.userId = userId;
-        this.userName = userName;
+        this.followedId = followedId;
     }
 
     public int getUserId() {
         return userId;
     }
 
-    public String getUserName() {
-        return userName;
+    public int getFollowedId() {
+        return followedId;
     }
 
     public void setUserId(int userId) {
         this.userId = userId;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setFollowedId(int followedId) {
+        this.followedId = followedId;
     }
 }

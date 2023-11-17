@@ -7,37 +7,35 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-
 @Data
 @NoArgsConstructor
 //@AllArgsConstructor
-public class UserDto {
-
-//    private Long user_id;
+public class FollowerDto {
+//    private int user_id;
 //    private String user_name;
- //   private UserTypeEnumDto userTypeEnumDto;
+//    private List<UserDto> followers;
 
     private int userId;
-    private String userName;
+    private int followerId;
 
-    public UserDto(int userId, String userName) {
+    public FollowerDto(int userId, int followerId) {
         this.userId = userId;
-        this.userName = userName;
+        this.followerId = followerId;
     }
 
     public int getUserId() {
         return userId;
     }
 
-    public String getUserName() {
-        return userName;
+    public int getFollowerId() {
+        return followerId;
     }
 
     public void setUserId(int userId) {
         this.userId = userId;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setFollowerId(int followerId) {
+        this.followerId = followerId;
     }
 }
