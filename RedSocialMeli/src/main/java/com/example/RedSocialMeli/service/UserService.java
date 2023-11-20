@@ -7,6 +7,7 @@ import com.example.RedSocialMeli.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -81,7 +82,7 @@ public class UserService {
 
 
     // US 0003: Obtener un listado de todos los usuarios que siguen a un determinado vendedor (¿Quién me sigue?)
-    public FollowersListDto getFollowersList(int userId){
+    public FollowersListDto getFollowersList(int userId, NameOrderEnumDto nameOrder){
         UserDto userDto = userRepository.getUserById(userId);
         List<Integer> followerIds = followersRepository.getFollowerIds(userId);
 
@@ -105,6 +106,8 @@ public class UserService {
 
             followers.add(followerDto);
         }
+        sortUserDtoList(followers, nameOrder);
+
             followersListDto.setFollowers(followers);
 
         return followersListDto;
@@ -112,7 +115,7 @@ public class UserService {
     }
 
 //US 0004: Obtener un listado de todos los vendedores a los cuales sigue un determinado usuario (¿A quién sigo?)
-    public FollowedListDto getFollowedList(int userId){
+    public FollowedListDto getFollowedList(int userId, NameOrderEnumDto nameOrder){
         UserDto userDto = userRepository.getUserById(userId);
         List<Integer> followedIds = followedRepository.getFollowedIds(userId);
 
@@ -128,6 +131,7 @@ public class UserService {
 
            followeds.add(followedDto);
         }
+        sortUserDtoList(followeds, nameOrder);
 
         followedListDto.setFollowed(followeds);
 
@@ -154,6 +158,25 @@ public class UserService {
         List<Integer> followersIds = followersRepository.getFollowerIds(userId);
         return followersIds;
 
+    }
+
+    // Método para ordenar una lista de UserDto
+    private void sortUserDtoList(List<UserDto> listToSort, NameOrderEnumDto criteria) {
+        // Crear comparador para ordenar por nombre de usuario
+        Comparator<UserDto> usernameComparator = new Comparator<UserDto>() {
+            @Override
+            public int compare(UserDto user1, UserDto user2) {
+                return user1.getUserName().compareTo(user2.getUserName());
+
+            }
+        };
+
+        // Ordenar dependiendo del criterio de entrada
+        if (criteria == NameOrderEnumDto.name_desc) {
+            listToSort.sort(usernameComparator.reversed());
+        } else {
+            listToSort.sort(usernameComparator);
+        }
     }
 
 
