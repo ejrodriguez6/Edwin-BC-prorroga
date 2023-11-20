@@ -7,21 +7,17 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserDto {
-
+public class FollowedListDto {
 
     private int userId;
     private String userName;
-    private UserTypeEnumDto userTypeEnumDto;
+    private List<Integer> followed;
 
-
-
-    public UserDto(int userId, String userName) {
+    public FollowedListDto(int userId, List<Integer> followed) {
         this.userId = userId;
-        this.userName = userName;
+        this.followed = followed;
     }
 }

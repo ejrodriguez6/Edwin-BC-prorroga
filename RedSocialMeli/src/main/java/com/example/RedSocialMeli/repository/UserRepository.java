@@ -1,7 +1,7 @@
 package com.example.RedSocialMeli.repository;
 
 import com.example.RedSocialMeli.dto.UserDto;
-import jakarta.annotation.PostConstruct;
+import com.example.RedSocialMeli.dto.UserTypeEnumDto;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -12,28 +12,32 @@ public class UserRepository
 {
 
 
-    private final List<UserDto> userList = new ArrayList<>();
+    private  List<UserDto> userList = new ArrayList<>();
 
-    @PostConstruct
+
+    //@PostConstruct
     public List<UserDto> initUsers() {
-        userList.add(new UserDto(1, "Edwin"));
-        userList.add(new UserDto(2, "Maria"));
-        userList.add(new UserDto(3, "Cesar"));
-        userList.add(new UserDto(4,"Victoria"));
-        userList.add(new UserDto(5,"Jose"));
-        userList.add(new UserDto(6,"Mariana"));
+        userList.add(new UserDto(1, "Edwin", UserTypeEnumDto.COMPRADOR));
+        userList.add(new UserDto(2, "Maria", UserTypeEnumDto.COMPRADOR));
+        userList.add(new UserDto(3, "Cesar", UserTypeEnumDto.COMPRADOR));
+        userList.add(new UserDto(4,"Victoria", UserTypeEnumDto.VENDEDOR));
+        userList.add(new UserDto(5,"Jose", UserTypeEnumDto.VENDEDOR));
+        userList.add(new UserDto(6,"Mariana", UserTypeEnumDto.VENDEDOR));
 
         return userList;
     }
 
 
-
     public UserDto getUserById(int userId) {
-        return userList.stream()
-                .filter(user -> user.getUserId() == userId)
-                .findFirst()
-                .orElse(null);
+        for (UserDto user : userList) {
+            if (user.getUserId() == userId) {
+                return user;
+            }
+        }
+        return null;
     }
+
+
 
 
 }
