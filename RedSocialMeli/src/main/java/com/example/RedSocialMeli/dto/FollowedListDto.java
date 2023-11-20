@@ -14,10 +14,7 @@ public class FollowedListDto {
 
     private int userId;
     private String userName;
-    private List<Integer> followed;
+    private List<UserDto> followed;
 
-    public FollowedListDto(int userId, List<Integer> followed) {
-        this.userId = userId;
-        this.followed = followed;
-    }
+
 }

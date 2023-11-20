@@ -57,17 +57,15 @@ public class UserController {
     }
 
     // US 0003: Obtener un listado de todos los usuarios que siguen a un determinado vendedor (¿Quién me sigue?)
-//    @GetMapping("/{userId}/followers/list")
-//    public FollowersListDto getFollowersList(@PathVariable int userId) {
-//        return userService.getFollowersList(userId);
-//    }
+    @GetMapping("/{userId}/followers/list")
+    public FollowersListDto getFollowersList(@PathVariable int userId) {
+        return userService.getFollowersList(userId);
+    }
 
-
-    // US 0003: Obtener un listado de todos los usuarios que siguen a un determinado vendedor (¿Quién me sigue?)
-    // Solo trae tipo de dato List<Integuer> para los followers
-    @GetMapping("/{userId}/followers/list/ids")
-    public FollowersListDto getFollowersIds(@PathVariable int userId) {
-        return userService.getFollowersIds(userId);
+    //US 0004: Obtener un listado de todos los vendedores a los cuales sigue un determinado usuario (¿A quién sigo?)
+    @GetMapping("/{userId}/followed/list")
+    public FollowedListDto getFollowedList(@PathVariable int userId){
+        return userService.getFollowedList(userId);
     }
 
 
