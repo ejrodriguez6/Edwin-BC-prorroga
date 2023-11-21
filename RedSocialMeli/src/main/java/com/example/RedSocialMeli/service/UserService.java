@@ -41,6 +41,12 @@ public class UserService {
         return userRepository.getUserById(userId);
     }
 
+
+
+    //*************************************US
+
+
+
     // US 0001 Seguir a un determinado vendedor
     public List<FollowedDto>  addFollowedUser(int userId, int followedId) {
 
@@ -145,10 +151,31 @@ public class UserService {
 
 
   //  US 0007: Poder realizar la acción de “Unfollow” (dejar de seguir) a un determinado vendedor.
-  public void unfollowUser(int userId, int followedId) {
-      followedRepository.removeFollowedUser(userId, followedId);
-      followersRepository.removeFollowerUser(followedId, userId);
+  public void unfollowUser(int userId, int userIdToUnfollow) {
+
+      if (userId == userIdToUnfollow) {
+
+          throw new IllegalArgumentException("userId y followedId no pueden ser iguales. Por favor, proporciona valores diferentes.");
+
+      }
+
+      UserDto user = userRepository.getUserById(userId);
+      UserDto userToUnfollow = userRepository.getUserById(userId);
+
+      List<Integer> followedIds =  getFollowedIds(userId);
+      if (!followedIds.contains(userIdToUnfollow)){
+          throw new IllegalArgumentException("No sigue al VENDEDOR ingresado");
+      }
+
+
+      followedRepository.removeFollowedUser(userId, userIdToUnfollow);
+      followersRepository.removeFollowerUser(userIdToUnfollow, userId);
   }
+
+
+
+  //*************************************US
+
 
 
 
