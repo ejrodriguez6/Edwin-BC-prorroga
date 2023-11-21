@@ -1,10 +1,12 @@
 package com.example.RedSocialMeli.repository;
 
 import com.example.RedSocialMeli.dto.FollowedDto;
+import com.example.RedSocialMeli.dto.FollowerDto;
 import com.example.RedSocialMeli.dto.UserDto;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,6 +27,17 @@ public class FollowedRepository {
         return followedList;
     }
 
+
+    //US0007
+    public void removeFollowedUser(int userId, int followedId) {
+        Iterator<FollowedDto> iterator = followedList.iterator();
+        while (iterator.hasNext()) {
+            FollowedDto followedDto = iterator.next();
+            if (followedDto.getUserId() == userId && followedDto.getFollowedId() == followedId) {
+                iterator.remove();
+            }
+        }
+    }
 
 
 

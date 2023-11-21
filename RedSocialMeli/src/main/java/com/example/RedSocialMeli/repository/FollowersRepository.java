@@ -7,6 +7,7 @@ import com.example.RedSocialMeli.dto.UserDto;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,6 +32,7 @@ public class FollowersRepository {
 
 
 
+   //US 0002
     public int getFollowerIdsCount(int userId) {
         List<Integer> followerIds = new ArrayList<>();
 
@@ -45,24 +47,19 @@ public class FollowersRepository {
 
 
 
-
-
-
-
-    public List<UserDto> getFollowerList(int userId) {
-        List<UserDto> followerList = new ArrayList<>();
-
-        for (FollowerDto follower : followersList) {
-            if (follower.getUserId() == userId) {
-                UserDto userDto = userRepository.getUserById(userId);
-
-                followerList.add(new UserDto(userDto.getUserId(), userDto.getUserName()));
-
+    //US0007
+    public void removeFollowerUser(int userId, int followerId) {
+        Iterator<FollowerDto> iterator = followersList.iterator();
+        while (iterator.hasNext()) {
+            FollowerDto followerDto = iterator.next();
+            if (followerDto.getUserId() == userId && followerDto.getFollowerId() == followerId) {
+                iterator.remove();
             }
         }
-
-        return followerList;
     }
+
+
+
 
 
     //    Se recorre la lista de seguidores y se verifica si el userId coincide.

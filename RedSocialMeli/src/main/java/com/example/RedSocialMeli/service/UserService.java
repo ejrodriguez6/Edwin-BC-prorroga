@@ -1,3 +1,4 @@
+
 package com.example.RedSocialMeli.service;
 
 import com.example.RedSocialMeli.dto.*;
@@ -5,6 +6,7 @@ import com.example.RedSocialMeli.repository.FollowedRepository;
 import com.example.RedSocialMeli.repository.FollowersRepository;
 import com.example.RedSocialMeli.repository.UserRepository;
 import org.springframework.stereotype.Service;
+
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -45,6 +47,7 @@ public class UserService {
         if (userId == followedId) {
 
             throw new IllegalArgumentException("userId y followedId no pueden ser iguales. Por favor, proporciona valores diferentes.");
+
         }
 
         UserDto userDto = userRepository.getUserById(followedId);
@@ -56,9 +59,9 @@ public class UserService {
         }
 
         List<Integer> followedIds =  getFollowedIds(userId);
-          if (followedIds.contains(followedId)){
-              throw new IllegalArgumentException("Ya sigues a este VENDEDOR");
-          }
+        if (followedIds.contains(followedId)){
+            throw new IllegalArgumentException("Ya sigues a este VENDEDOR");
+        }
 
 
         List<FollowedDto>   addFollowedUser = followedRepository.addFollowedUser(userId, followedId);
@@ -91,7 +94,7 @@ public class UserService {
         followersListDto.setUserId(userDto.getUserId());
         followersListDto.setUserName(userDto.getUserName());
 
-   // Obtener información de los seguidores y agregarla a la lista
+        // Obtener información de los seguidores y agregarla a la lista
         List<UserDto> followers = new ArrayList<>();
         for (Integer followerId : followerIds) {
             UserDto followerDto = userRepository.getUserById(followerId);
@@ -108,13 +111,13 @@ public class UserService {
         }
         sortUserDtoList(followers, nameOrder);
 
-            followersListDto.setFollowers(followers);
+        followersListDto.setFollowers(followers);
 
         return followersListDto;
 
     }
 
-//US 0004: Obtener un listado de todos los vendedores a los cuales sigue un determinado usuario (¿A quién sigo?)
+    //US 0004: Obtener un listado de todos los vendedores a los cuales sigue un determinado usuario (¿A quién sigo?)
     public FollowedListDto getFollowedList(int userId, NameOrderEnumDto nameOrder){
         UserDto userDto = userRepository.getUserById(userId);
         List<Integer> followedIds = followedRepository.getFollowedIds(userId);
@@ -129,7 +132,7 @@ public class UserService {
         for (Integer followedId : followedIds) {
             UserDto followedDto = userRepository.getUserById(followedId);
 
-           followeds.add(followedDto);
+            followeds.add(followedDto);
         }
         sortUserDtoList(followeds, nameOrder);
 
@@ -141,7 +144,11 @@ public class UserService {
     }
 
 
-
+  //  US 0007: Poder realizar la acción de “Unfollow” (dejar de seguir) a un determinado vendedor.
+  public void unfollowUser(int userId, int followedId) {
+      followedRepository.removeFollowedUser(userId, followedId);
+      followersRepository.removeFollowerUser(followedId, userId);
+  }
 
 
 
