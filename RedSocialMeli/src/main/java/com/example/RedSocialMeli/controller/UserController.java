@@ -72,8 +72,8 @@ public class UserController {
 
     //US 0007: Poder realizar la acción de “Unfollow” (dejar de seguir) a un determinado vendedor.
     @PostMapping("/{userId}/unfollow/{userIdToUnfollow}")
-    public void unfollowUser(@PathVariable int userId, @PathVariable int userIdToUnfollow){
-      userService.unfollowUser(userId, userIdToUnfollow);
+    public List<FollowedDto> unfollowUser(@PathVariable int userId, @PathVariable int userIdToUnfollow){
+     return userService.unfollowUser(userId, userIdToUnfollow);
 
     }
 

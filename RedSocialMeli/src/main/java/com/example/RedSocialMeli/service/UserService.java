@@ -65,9 +65,21 @@ public class UserService {
         }
 
         List<Integer> followedIds =  getFollowedIds(userId);
+
+
+//        if (!followedIds.contains(followedId)){
+//            throw new IllegalArgumentException("VENDEDOR NO EXISTE");
+//       }
+
+
+
         if (followedIds.contains(followedId)){
             throw new IllegalArgumentException("Ya sigues a este VENDEDOR");
         }
+
+
+
+
 
 
         List<FollowedDto>   addFollowedUser = followedRepository.addFollowedUser(userId, followedId);
@@ -151,7 +163,9 @@ public class UserService {
 
 
   //  US 0007: Poder realizar la acción de “Unfollow” (dejar de seguir) a un determinado vendedor.
-  public void unfollowUser(int userId, int userIdToUnfollow) {
+//  public void unfollowUser(int userId, int userIdToUnfollow) {
+
+    public  List<FollowedDto> unfollowUser(int userId, int userIdToUnfollow) {
 
       if (userId == userIdToUnfollow) {
 
@@ -167,9 +181,12 @@ public class UserService {
           throw new IllegalArgumentException("No sigue al VENDEDOR ingresado");
       }
 
+        List<FollowedDto>  removeFollowedUser = followedRepository.removeFollowedUser(userId, userIdToUnfollow);
+        List<FollowerDto> removeFollowersUser = followersRepository.removeFollowerUser(userIdToUnfollow, userId);
 
-      followedRepository.removeFollowedUser(userId, userIdToUnfollow);
-      followersRepository.removeFollowerUser(userIdToUnfollow, userId);
+
+
+        return removeFollowedUser;
   }
 
 

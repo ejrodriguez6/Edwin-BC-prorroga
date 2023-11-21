@@ -48,15 +48,35 @@ public class FollowersRepository {
 
 
     //US0007
-    public void removeFollowerUser(int userId, int followerId) {
+//    public void removeFollowerUser(int userId, int followerId) {
+//        Iterator<FollowerDto> iterator = followersList.iterator();
+//        while (iterator.hasNext()) {
+//            FollowerDto followerDto = iterator.next();
+//            if (followerDto.getUserId() == userId && followerDto.getFollowerId() == followerId) {
+//                iterator.remove();
+//                return new ArrayList<>(followedList);
+//            }
+//        }
+//    }
+
+
+    // US0007
+    // ==================================
+    public List<FollowerDto> removeFollowerUser(int userId, int followerId) {
         Iterator<FollowerDto> iterator = followersList.iterator();
         while (iterator.hasNext()) {
             FollowerDto followerDto = iterator.next();
             if (followerDto.getUserId() == userId && followerDto.getFollowerId() == followerId) {
                 iterator.remove();
+                // Devolver la lista actualizada después de la eliminación
+                return new ArrayList<>(followersList);
             }
         }
+
+        // Si no se encontró la combinación userId y followerId, puedes lanzar una excepción o manejarlo de otra manera
+        throw new IllegalArgumentException("No se encontró la combinación userId y followerId en la lista.");
     }
+    // ===================================
 
 
 
