@@ -6,7 +6,7 @@
 	},
 	"item": [
 		{
-			"name": "hello",
+			"name": "hello user controller",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -26,10 +26,37 @@
 			"response": []
 		},
 		{
-			"name": "getAllUsers",
+			"name": "hello product controller",
 			"request": {
 				"method": "GET",
 				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/products/hello",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"products",
+						"hello"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAllUsers",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "http://localhost:8080/users/list",
 					"protocol": "http",
@@ -46,12 +73,52 @@
 			"response": []
 		},
 		{
+			"name": "getAllProducts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/products/list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"products",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAllPosts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/products/posts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"products",
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "getUserById",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/users/list/4",
+					"raw": "http://localhost:8080/users/list/6",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -60,7 +127,49 @@
 					"path": [
 						"users",
 						"list",
-						"4"
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getProductById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/products/list/7",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"products",
+						"list",
+						"7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getPostById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/products/posts/6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"products",
+						"posts",
+						"6"
 					]
 				}
 			},
@@ -81,7 +190,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/users/1/follow/5",
+					"raw": "http://localhost:8080/users/1/follow/6",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -91,7 +200,7 @@
 						"users",
 						"1",
 						"follow",
-						"5"
+						"6"
 					]
 				}
 			},
@@ -149,7 +258,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/users/{userId}/followers/list",
+					"raw": "http://localhost:8080/users/4/followers/list?order=name_desc",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -157,9 +266,15 @@
 					"port": "8080",
 					"path": [
 						"users",
-						"{userId}",
+						"4",
 						"followers",
 						"list"
+					],
+					"query": [
+						{
+							"key": "order",
+							"value": "name_desc"
+						}
 					]
 				}
 			},
@@ -223,7 +338,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/users/3/followed/list?order=name_desc",
+					"raw": "http://localhost:8080/users/1/followed/list?order=name_desc",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -231,7 +346,7 @@
 					"port": "8080",
 					"path": [
 						"users",
-						"3",
+						"1",
 						"followed",
 						"list"
 					],
@@ -263,7 +378,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/users/{userId}/followers/list?order=name_asc",
+					"raw": "http://localhost:8080/users/1/followed/list?order=name_asc",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -271,8 +386,8 @@
 					"port": "8080",
 					"path": [
 						"users",
-						"{userId}",
-						"followers",
+						"1",
+						"followed",
 						"list"
 					],
 					"query": [
@@ -280,6 +395,35 @@
 							"key": "order",
 							"value": "name_asc"
 						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "US 0005 addPost",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/products/addPost",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"products",
+						"addPost"
 					]
 				}
 			},
@@ -300,7 +444,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/users/1/unfollow/4",
+					"raw": "http://localhost:8080/users/1/unfollow/8",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -310,7 +454,7 @@
 						"users",
 						"1",
 						"unfollow",
-						"4"
+						"8"
 					]
 				}
 			},

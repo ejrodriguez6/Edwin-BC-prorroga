@@ -25,7 +25,7 @@ public class UserController {
     // Obtener mensaje desde el controlador
     @GetMapping("/hello")
     public String hello(){
-        return "Hello World! ";
+        return "Hello User! ";
     }
 
     // Obtener lista de todos los usuarios

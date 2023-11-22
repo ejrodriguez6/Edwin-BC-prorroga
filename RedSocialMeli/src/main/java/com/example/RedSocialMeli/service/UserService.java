@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -41,58 +42,61 @@ public class UserService {
         return userRepository.getUserById(userId);
     }
 
-
-
     //*************************************US
 
 
 
     // US 0001 Seguir a un determinado vendedor
-    public List<FollowedDto>  addFollowedUser(int userId, int followedId) {
 
-        if (userId == followedId) {
+    public List<FollowedDto> addFollowedUser(int userId, int followedId) {
 
-            throw new IllegalArgumentException("userId y followedId no pueden ser iguales. Por favor, proporciona valores diferentes.");
+            if (userId == followedId) {
+                throw new IllegalArgumentException("SEGUIDOR Y A SEGUIR IGUALES: DEBEN SER DIFERENTES");
+            }
 
-        }
+            UserDto userSeguidorDto = userRepository.getUserById(userId);
+            if (userSeguidorDto == null) {
+                throw new IllegalArgumentException("USUARIO NO EXISTE");
+            }
 
-        UserDto userDto = userRepository.getUserById(followedId);
-        UserTypeEnumDto getUserType = userDto.getUserTypeEnumDto();
-        if(!getUserType.equals( UserTypeEnumDto.VENDEDOR)){
-
-            throw new IllegalArgumentException("Solo puedes seguir a VENDEDORES");
-
-        }
-
-        List<Integer> followedIds =  getFollowedIds(userId);
-
-
-//        if (!followedIds.contains(followedId)){
-//            throw new IllegalArgumentException("VENDEDOR NO EXISTE");
-//       }
+            UserDto userSeguidoDto = userRepository.getUserById(followedId);
+            if (userSeguidoDto == null) {
+                throw new IllegalArgumentException("VENDEDOR NO EXISTE");
+            }
 
 
 
-        if (followedIds.contains(followedId)){
-            throw new IllegalArgumentException("Ya sigues a este VENDEDOR");
-        }
+            UserTypeEnumDto getUserType = userSeguidoDto.getUserTypeEnumDto();
+            if (!getUserType.equals(UserTypeEnumDto.VENDEDOR)) {
+                throw new IllegalArgumentException("SOLO PUEDES SEGUIR A VENDEDORES");
+            }
+
+            List<Integer> followedIds = getFollowedIds(userId);
 
 
 
+            if (followedIds.contains(followedId)) {
+                throw new IllegalArgumentException("YA SIGUES A ESTE VENDEDOR");
+            }
 
+            List<FollowedDto> addFollowedUser = followedRepository.addFollowedUser(userId, followedId);
+            List<FollowerDto> addFollowersUser = followersRepository.addFollowerUser(followedId, userId);
 
+            return addFollowedUser;
 
-        List<FollowedDto>   addFollowedUser = followedRepository.addFollowedUser(userId, followedId);
-        List<FollowerDto>   addFollowersUser =  followersRepository.addFollowerUser(followedId, userId);
-
-        return addFollowedUser;
     }
+
+
 
 
 
     // US 0002: Obtener el resultado de la cantidad de usuarios que siguen a un determinado vendedor
     public FollowersCountDto getFollowersCount(int userId){
         UserDto getUser = userRepository.getUserById(userId);
+
+        if (getUser == null) {
+            throw new IllegalArgumentException("USUARIO NO EXISTE");
+        }
         int getFollowerIdsCount = followersRepository.getFollowerIdsCount(userId);
 
         return new FollowersCountDto(getUser.getUserId(), getUser.getUserName(), getFollowerIdsCount);
@@ -105,6 +109,9 @@ public class UserService {
     // US 0003: Obtener un listado de todos los usuarios que siguen a un determinado vendedor (¿Quién me sigue?)
     public FollowersListDto getFollowersList(int userId, NameOrderEnumDto nameOrder){
         UserDto userDto = userRepository.getUserById(userId);
+        if (userDto == null) {
+            throw new IllegalArgumentException("USUARIO NO EXISTE");
+        }
         List<Integer> followerIds = followersRepository.getFollowerIds(userId);
 
         // Crear FollowersListDto
@@ -116,12 +123,6 @@ public class UserService {
         List<UserDto> followers = new ArrayList<>();
         for (Integer followerId : followerIds) {
             UserDto followerDto = userRepository.getUserById(followerId);
-
-
-//            UserDto follower = new UserDto();
-//            follower.setUserId(followerDto.getUserId());
-//            follower.setUserName(followerDto.getUserName());
-//            followers.add(followerDto);
 
 
 
@@ -138,6 +139,9 @@ public class UserService {
     //US 0004: Obtener un listado de todos los vendedores a los cuales sigue un determinado usuario (¿A quién sigo?)
     public FollowedListDto getFollowedList(int userId, NameOrderEnumDto nameOrder){
         UserDto userDto = userRepository.getUserById(userId);
+        if (userDto == null) {
+            throw new IllegalArgumentException("USUARIO NO EXISTE");
+        }
         List<Integer> followedIds = followedRepository.getFollowedIds(userId);
 
         // Crear FollowersListDto
