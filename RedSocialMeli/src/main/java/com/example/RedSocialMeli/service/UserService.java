@@ -54,19 +54,19 @@ public class UserService {
                 throw new IllegalArgumentException("SEGUIDOR Y A SEGUIR IGUALES: DEBEN SER DIFERENTES");
             }
 
-            UserDto userSeguidorDto = userRepository.getUserById(userId);
-            if (userSeguidorDto == null) {
+            UserDto userFollowerDto = userRepository.getUserById(userId);
+            if (userFollowerDto == null) {
                 throw new IllegalArgumentException("USUARIO NO EXISTE");
             }
 
-            UserDto userSeguidoDto = userRepository.getUserById(followedId);
-            if (userSeguidoDto == null) {
+            UserDto userFollowedDto = userRepository.getUserById(followedId);
+            if (userFollowedDto == null) {
                 throw new IllegalArgumentException("VENDEDOR NO EXISTE");
             }
 
 
 
-            UserTypeEnumDto getUserType = userSeguidoDto.getUserTypeEnumDto();
+            UserTypeEnumDto getUserType = userFollowedDto.getUserTypeEnumDto();
             if (!getUserType.equals(UserTypeEnumDto.VENDEDOR)) {
                 throw new IllegalArgumentException("SOLO PUEDES SEGUIR A VENDEDORES");
             }
@@ -173,7 +173,7 @@ public class UserService {
 
       if (userId == userIdToUnfollow) {
 
-          throw new IllegalArgumentException("userId y followedId no pueden ser iguales. Por favor, proporciona valores diferentes.");
+          throw new IllegalArgumentException("SEGUIDOR Y A SEGUIR IGUALES: DEBEN SER DIFERENTES");
 
       }
 
@@ -182,7 +182,7 @@ public class UserService {
 
       List<Integer> followedIds =  getFollowedIds(userId);
       if (!followedIds.contains(userIdToUnfollow)){
-          throw new IllegalArgumentException("No sigue al VENDEDOR ingresado");
+          throw new IllegalArgumentException("NO SIGUE AL VENDEDOR INGRESADO");
       }
 
         List<FollowedDto>  removeFollowedUser = followedRepository.removeFollowedUser(userId, userIdToUnfollow);
